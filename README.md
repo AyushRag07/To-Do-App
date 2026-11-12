@@ -20,7 +20,7 @@ A simple yet powerful TODO application built with Django that helps you organize
 
 - **Python**: 3.13
 - **Django**: 5.2.8
-- **Package Manager**: uv
+- **Package Manager**: pip
 - **Frontend**: Bootstrap 5 with Bootstrap Icons
 - **Database**: SQLite (default, can be changed to PostgreSQL/MySQL)
 
@@ -49,56 +49,63 @@ todo-app/
 │   ├── urls.py # URL routing
 │   └── tests.py # Test suite
 ├── manage.py
-├── pyproject.toml
+├── requirements.txt
 └── README.md
 ```
 
 ## Installation
 
 ### Prerequisites
-
 - Python 3.13 or higher
-- uv package manager (install from https://docs.astral.sh/uv/)
+- pip (included with python)
 
 ### Setup Instructions
 
-1. **Clone the repository** (or create the project):
+1. Clone the repository
 
-```shell
+```bash
 git clone <your-repo-url>
 cd todo-app
 ```
 
-2. **Create virtual environment and install dependencies**:
+2. Create a virtual environment
 
-```shell
-uv sync
+```bash
+python -m venv env
 ```
 
-If starting from scratch:
+3. Activate the virtual environment
 
-```shell
-uv init todo-app
-cd todo-app
-uv add django
+Windows:
+
+```bash
+venv\Scripts\activate
 ```
 
-3. **Run database migrations**:
+4. Install dependencies
 
-```shell
-uv run python manage.py migrate
+```bash
+pip install -r requirements.txt
 ```
 
-4. **Create a superuser** (optional, for admin access):
+5. Run database migrations
 
-```shell
-uv run python manage.py createsuperuser
+```bash
+python manage.py migrate
 ```
 
-5. **Run the development server**:
+6. Create a superuser (optional)
 
-```shell
-uv run python manage.py runserver
+```bash
+python manage.py createsuperuser
+```
+
+7. Start the development server
+
+```bash
+python manage.py runserver
+```
+
 ```
 
 6. **Access the application**:
@@ -142,23 +149,32 @@ uv run python manage.py runserver
 
 Run the complete test suite[web:45]:
 
-```shell
-uv run python manage.py test todos
+## Running Tests
+
+Make sure your virtual environment is activated before running tests.
+
+### Run the complete test suite
+
+```bash
+python manage.py test todos
 ```
 
-Run with verbose output:
+### Run with verbose output
 
-```shell
-uv run python manage.py test todos --verbosity=2
+```bash
+python manage.py test todos --verbosity=2
 ```
 
-Run specific test classes:
+### Run specific test classes
 
-```shell
-uv run python manage.py test todos.tests.TodoModelTest
-uv run python manage.py test todos.tests.TodoViewsTest
-uv run python manage.py test todos.tests.AuthenticationTest
+```bash
+python manage.py test todos.tests.TodoModelTest
+python manage.py test todos.tests.TodoViewsTest
+python manage.py test todos.tests.AuthenticationTest
 ```
+
+**Note:** Specific test commands work only if the corresponding test classes are defined in `todos/tests.py`.
+
 
 ## Database Schema
 
@@ -258,4 +274,3 @@ This project is open source and available under the MIT License.
 - Built with [Django](https://www.djangoproject.com/)
 - Styled with [Bootstrap 5](https://getbootstrap.com/)
 - Icons from [Bootstrap Icons](https://icons.getbootstrap.com/)
-- Package management by [uv](https://docs.astral.sh/uv/)
